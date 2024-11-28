@@ -243,6 +243,20 @@ define U-Boot/fastrhino-r68s-rk3568
      fastrhino_r68s
 endef
 
+define U-Boot/nsy-g68-plus-rk3568
+  $(U-Boot/rk3568/Default)
+  NAME:=NSY G68
+  BUILD_DEVICES:= \
+    nsy_g68-plus
+endef
+
+define U-Boot/nsy-g16-plus-rk3568
+  $(U-Boot/rk3568/Default)
+  NAME:=NSY G16
+  BUILD_DEVICES:= \
+    nsy_g16-plus
+endef
+
 define U-Boot/generic-rk3568
   $(U-Boot/rk3568/Default)
   NAME:=GENERIC RK3568
@@ -399,6 +413,8 @@ UBOOT_TARGETS := \
   rock-3a-rk3568 \
   rock-3b-rk3568 \
   station-p2-rk3568 \
+  nsy-g68-plus-rk3568 \
+  nsy-g16-plus-rk3568 \
   generic-rk3588 \
   nanopc-t6-rk3588 \
   orangepi-5-plus-rk3588 \
