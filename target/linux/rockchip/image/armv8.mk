@@ -125,6 +125,28 @@ $(call Device/fastrhino_common)
 endef
 TARGET_DEVICES += fastrhino_r68s
 
+define Device/nsy_g68-plus
+  DEVICE_VENDOR := NSY
+  DEVICE_MODEL := G68
+  DEVICE_DTS := rockchip/rk3568-nsy-g68-plus
+  SUPPORTED_DEVICES := nsy,g68-plus
+  UBOOT_DEVICE_NAME := nsy-g68-plus-rk3568
+  IMAGE/sysupgrade.img.gz := boot-common | boot-script | pine64-img | gzip | append-metadata
+  DEVICE_PACKAGES := kmod-nvme kmod-scsi-core kmod-thermal kmod-switch-rtl8306 kmod-switch-rtl8366-smi kmod-switch-rtl8366rb kmod-switch-rtl8366s kmod-hwmon-pwmfan kmod-leds-pwm kmod-r8125 kmod-r8168 kmod-switch-rtl8367b swconfig kmod-swconfig
+endef
+TARGET_DEVICES += nsy_g68-plus
+
+define Device/nsy_g16-plus
+  DEVICE_VENDOR := NSY
+  DEVICE_MODEL := G16
+  DEVICE_DTS := rockchip/rk3568-nsy-g16-plus
+  SUPPORTED_DEVICES := nsy,g16-plus
+  UBOOT_DEVICE_NAME := nsy-g16-plus-rk3568
+  IMAGE/sysupgrade.img.gz := boot-common | boot-script | pine64-img | gzip | append-metadata
+  DEVICE_PACKAGES := kmod-nvme kmod-scsi-core kmod-thermal kmod-switch-rtl8306 kmod-switch-rtl8366-smi kmod-switch-rtl8366rb kmod-switch-rtl8366s kmod-hwmon-pwmfan kmod-leds-pwm kmod-r8125 kmod-r8168 kmod-switch-rtl8367b swconfig kmod-swconfig
+endef
+TARGET_DEVICES += nsy_g16-plus
+
 define Device/friendlyarm_nanopc-t4
   DEVICE_VENDOR := FriendlyARM
   DEVICE_MODEL := NanoPC T4
