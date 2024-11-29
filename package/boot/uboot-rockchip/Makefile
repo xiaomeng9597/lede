@@ -413,8 +413,6 @@ UBOOT_TARGETS := \
   rock-3a-rk3568 \
   rock-3b-rk3568 \
   station-p2-rk3568 \
-  nsy-g68-plus-rk3568 \
-  nsy-g16-plus-rk3568 \
   generic-rk3588 \
   nanopc-t6-rk3588 \
   orangepi-5-plus-rk3588 \
@@ -441,7 +439,9 @@ UBOOT_TARGETS := \
   nanopi-r2s-rk3328 \
   nanopi-r2s-plus-rk3328 \
   orangepi-r1-plus-rk3328 \
-  orangepi-r1-plus-lts-rk3328
+  orangepi-r1-plus-lts-rk3328 \
+  nsy-g68-plus-rk3568 \
+  nsy-g16-plus-rk3568
 
 UBOOT_CONFIGURE_VARS += USE_PRIVATE_LIBGCC=yes
 
