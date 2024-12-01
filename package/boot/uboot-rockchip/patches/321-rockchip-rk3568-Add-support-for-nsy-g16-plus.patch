@@ -1,4 +1,26 @@
 --- /dev/null
++++ b/arch/arm/dts/rk3568-nsy-g16-plus-u-boot.dtsi
+@@ -0,0 +1,19 @@
++#include "rk356x-u-boot.dtsi"
++
++/ {
++	chosen {
++		u-boot,spl-boot-order = "same-as-spl", &sdhci;
++	};
++};
++&sdhci {
++	status = "okay";
++	max-frequency = <0xbebc200>;
++	no-sdio;
++	no-sd;
++	supports-emmc;
++	bus-width = <0x08>;
++	mmc-hs200-1_8v;
++	non-removable;
++	pinctrl-names = "default";
++	pinctrl-0 = <&emmc_bus8 &emmc_clk &emmc_cmd &emmc_datastrobe>;
++};
+--- /dev/null
 +++ b/arch/arm/dts/rk3568-nsy-g16-plus.dts
 @@ -0,0 +1,5942 @@
 +/dts-v1/;
