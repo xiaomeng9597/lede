@@ -1,9 +1,7 @@
 --- /dev/null
 +++ b/arch/arm/dts/rk3568-nsy-g16-plus-u-boot.dtsi
-@@ -0,0 +1,9 @@
+@@ -0,0 +1,7 @@
 +// SPDX-License-Identifier: GPL-2.0+
-+
-+#include "rk356x-u-boot.dtsi"
 +
 +/ {
 +	chosen {
