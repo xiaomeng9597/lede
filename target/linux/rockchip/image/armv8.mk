@@ -128,6 +128,7 @@ TARGET_DEVICES += fastrhino_r68s
 define Device/nsy_g68-plus
   DEVICE_VENDOR := NSY
   DEVICE_MODEL := G68
+  SOC := rk3568
   DEVICE_DTS := rockchip/rk3568-nsy-g68-plus
   SUPPORTED_DEVICES := nsy,g68-plus
   UBOOT_DEVICE_NAME := nsy-g68-plus-rk3568
@@ -139,6 +140,7 @@ TARGET_DEVICES += nsy_g68-plus
 define Device/nsy_g16-plus
   DEVICE_VENDOR := NSY
   DEVICE_MODEL := G16
+  SOC := rk3568
   DEVICE_DTS := rockchip/rk3568-nsy-g16-plus
   SUPPORTED_DEVICES := nsy,g16-plus
   UBOOT_DEVICE_NAME := nsy-g16-plus-rk3568
