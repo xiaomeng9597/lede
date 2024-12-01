@@ -1,14 +1,4 @@
 --- /dev/null
-+++ b/arch/arm/dts/rk3568-nsy-g68-plus-u-boot.dtsi
-@@ -0,0 +1,7 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+
-+/ {
-+	chosen {
-+		u-boot,spl-boot-order = "same-as-spl", &sdhci;
-+	};
-+};
---- /dev/null
 +++ b/arch/arm/dts/rk3568-nsy-g68-plus.dts
 @@ -0,0 +1,5944 @@
 +/dts-v1/;
