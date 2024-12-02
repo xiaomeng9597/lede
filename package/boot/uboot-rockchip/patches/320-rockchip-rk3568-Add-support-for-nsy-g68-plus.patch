@@ -18,7 +18,7 @@
 +};
 --- /dev/null
 +++ b/arch/arm/dts/rk3568-nsy-g68-plus.dts
-@@ -0,0 +1,637 @@
+@@ -0,0 +1,636 @@
 +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 +/*
 + * Copyright (c) 2020 Rockchip Electronics Co., Ltd.
@@ -30,7 +30,6 @@
 +#include <dt-bindings/gpio/gpio.h>
 +#include <dt-bindings/pwm/pwm.h>
 +#include <dt-bindings/pinctrl/rockchip.h>
-+#include <dt-bindings/input/rk-input.h>
 +#include "rk3568.dtsi"
 +
 +/ {
