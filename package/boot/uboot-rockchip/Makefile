@@ -406,6 +406,8 @@ UBOOT_TARGETS := \
   fastrhino-r66s-rk3568 \
   fastrhino-r68s-rk3568 \
   mmbox-anas3035-rk3568 \
+  nsy-g68-plus-rk3568 \
+  nsy-g16-plus-rk3568 \
   nanopi-r5c-rk3568 \
   nanopi-r5s-rk3568 \
   photonicat-rk3568 \
@@ -439,9 +441,7 @@ UBOOT_TARGETS := \
   nanopi-r2s-rk3328 \
   nanopi-r2s-plus-rk3328 \
   orangepi-r1-plus-rk3328 \
-  orangepi-r1-plus-lts-rk3328 \
-  nsy-g68-plus-rk3568 \
-  nsy-g16-plus-rk3568
+  orangepi-r1-plus-lts-rk3328
 
 UBOOT_CONFIGURE_VARS += USE_PRIVATE_LIBGCC=yes
 
