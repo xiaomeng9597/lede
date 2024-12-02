@@ -18,7 +18,7 @@
 +};
 --- /dev/null
 +++ b/arch/arm/dts/rk3568-nsy-g68-plus.dts
-@@ -0,0 +1,636 @@
+@@ -0,0 +1,657 @@
 +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 +/*
 + * Copyright (c) 2020 Rockchip Electronics Co., Ltd.
@@ -36,20 +36,12 @@
 +	model = "NSY-G68 AX3000 Router";
 +	compatible = "nsy,g68-plus", "rockchip,rk3568";
 +
-+	chosen: chosen {
-+		bootargs = "earlycon=uart8250,mmio32,0xfe660000 console=ttyFIQ0 root=PARTUUID=614e0000-0000 rw rootwait";
++	aliases {
++		mmc0 = &sdhci;
 +	};
 +
-+	rtlgsw@0 {
-+		compatible = "realtek,rtl8367b", "realtek,rtl8367s";
-+		realtek,mdio = <&mdio0>;
-+		mii-bus = <&mdio0>;
-+		realtek,id = <29>;
-+		phy-id = <29>;
-+		cpu_port = <0x07>;
-+		realtek,extif1 = <1 0 1 1 1 1 1 1 2>;
-+		realtek,extif2 = <1 0 1 1 1 1 1 1 2>;
-+		status = "okay";
++	chosen: chosen {
++		bootargs = "earlycon=uart8250,mmio32,0xfe660000 console=ttyFIQ0 root=PARTUUID=614e0000-0000 rw rootwait";
 +	};
 +
 +	fiq-debugger {
@@ -62,6 +54,29 @@
 +		interrupts = <GIC_SPI 252 IRQ_TYPE_LEVEL_LOW>;
 +		pinctrl-names = "default";
 +		pinctrl-0 = <&uart2m0_xfer>;
++		status = "okay";
++	};
++
++	leds {
++		compatible = "gpio-leds";
++		led-power {
++			label = "led-power";
++			default-state = "on";
++			gpios = <&gpio0 RK_PC4 GPIO_ACTIVE_HIGH>;
++			pinctrl-names = "default";
++			pinctrl-0 = <&led_power_en>;
++		};
++	};
++
++	rtlgsw@0 {
++		compatible = "realtek,rtl8367b", "realtek,rtl8367s";
++		realtek,mdio = <&mdio0>;
++		mii-bus = <&mdio0>;
++		realtek,id = <29>;
++		phy-id = <29>;
++		cpu_port = <0x07>;
++		realtek,extif1 = <1 0 1 1 1 1 1 1 2>;
++		realtek,extif2 = <1 0 1 1 1 1 1 1 2>;
 +		status = "okay";
 +	};
 +
@@ -457,6 +472,12 @@
 +	rtl83xx_switches {
 +		rtl8367s_switch0_int: switch0-int {
 +			rockchip,pins = <1 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
++
++	leds {
++		led_power_en: led-power-en {
++			rockchip,pins = <0 RK_PC4 RK_FUNC_GPIO &pcfg_pull_none>;
 +		};
 +	};
 +};
