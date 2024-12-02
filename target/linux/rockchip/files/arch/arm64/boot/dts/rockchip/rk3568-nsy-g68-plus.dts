@@ -9,6 +9,9 @@
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/pwm/pwm.h>
 #include <dt-bindings/pinctrl/rockchip.h>
+#ifdef DTS_NO_LEGACY
+#include <dt-bindings/input/rk-input.h>
+#endif
 #include "rk3568.dtsi"
 
 / {
@@ -34,6 +37,14 @@
 		pinctrl-names = "default";
 		pinctrl-0 = <&uart2m0_xfer>;
 		status = "okay";
+	};
+
+	debug: debug@fd904000 {
+		compatible = "rockchip,debug";
+		reg = <0x0 0xfd904000 0x0 0x1000>,
+			<0x0 0xfd905000 0x0 0x1000>,
+			<0x0 0xfd906000 0x0 0x1000>,
+			<0x0 0xfd907000 0x0 0x1000>;
 	};
 
 	leds {
@@ -64,14 +75,6 @@
 			compatible = "linaro,optee-tz";
 			method = "smc";
 		};
-	};
-
-	debug: debug@fd904000 {
-		compatible = "rockchip,debug";
-		reg = <0x0 0xfd904000 0x0 0x1000>,
-			<0x0 0xfd905000 0x0 0x1000>,
-			<0x0 0xfd906000 0x0 0x1000>,
-			<0x0 0xfd907000 0x0 0x1000>;
 	};
 
 	cspmu: cspmu@fd90c000 {
@@ -232,11 +235,23 @@
 		regulator-min-microvolt = <1200000>;
 		regulator-max-microvolt = <1200000>;
 		regulator-init-microvolt = <900000>;
+		regulator-ramp-delay = <6001>;
+		regulator-initial-mode = <0x2>;
 		regulator-always-on;
 		regulator-boot-on;
 		regulator-settling-time-up-us = <250>;
 		pwm-supply = <&vcc5v0_sys>;
 		status = "okay";
+	};
+
+	vcc_ddr: vcc-ddr {
+		regulator-always-on;
+		regulator-boot-on;
+		regulator-initial-mode = <0x2>;
+		regulator-name = "vcc_ddr";
+		regulator-state-mem {
+			regulator-on-in-suspend;
+		};
 	};
 
 	vdd_npu: vdd-npu {
@@ -246,6 +261,8 @@
 		regulator-min-microvolt = <800000>;
 		regulator-max-microvolt = <1200000>;
 		regulator-init-microvolt = <950000>;
+		regulator-ramp-delay = <6001>;
+		regulator-initial-mode = <0x2>;
 		regulator-always-on;
 		regulator-boot-on;
 		regulator-settling-time-up-us = <250>;
@@ -262,10 +279,7 @@
 
 &cpu0 {
 	cpu-supply = <&vdd_cpu>;
-};
-
-&CPU_SLEEP {
-	status = "disabled";
+	mem-supply = <&vdd_cpu>;
 };
 
 &dfi {
@@ -572,33 +586,46 @@ status = "okay";
 	status = "disabled";
 };
 
-&vdpu_mmu {
-	status = "disabled";
+&mpp_srv {
+	status = "okay";
 };
 
 &rk_rga {
-	status = "disabled";
+	status = "okay";
 };
 
 &rknpu {
 	rknpu-supply = <&vdd_npu>;
-	status = "disabled";
+	mem-supply = <&vdd_npu>;
+	status = "okay";
+};
+
+&rknpu_mmu {
+	status = "okay";
 };
 
 &vdpu {
-	status = "disabled";
+	status = "okay";
+};
+
+&vdpu_mmu {
+	status = "okay";
 };
 
 &jpegd {
-	status = "disabled";
+	status = "okay";
 };
 
 &jpegd_mmu {
-	status = "disabled";
+	status = "okay";
 };
 
 &vepu {
-	status = "disabled";
+	status = "okay";
+};
+
+&vepu_mmu {
+	status = "okay";
 };
 
 &iep {
@@ -606,11 +633,20 @@ status = "okay";
 };
 
 &rkvenc {
-	status = "disabled";
+	venc-supply = <&vdd_logic>;
+	status = "okay";
+};
+
+&rkvenc_mmu {
+	status = "okay";
 };
 
 &rkvdec {
-	status = "disabled";
+	status = "okay";
+};
+
+&rkvdec_mmu {
+	status = "okay";
 };
 
 &u2phy0_host {
