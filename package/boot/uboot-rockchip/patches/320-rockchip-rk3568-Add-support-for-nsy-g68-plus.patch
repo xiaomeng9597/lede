@@ -1,28 +1,24 @@
 --- /dev/null
-+++ b/arch/arm/dts/rk3568-nsy-g68-plus-u-boot.dtsi
-@@ -0,0 +1,19 @@
++++ b/arch/arm/dts/rk3568-mmbox-anas3035-u-boot.dtsi
+@@ -0,0 +1,15 @@
++// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
++
 +#include "rk356x-u-boot.dtsi"
 +
-+/ {
-+	chosen {
-+		u-boot,spl-boot-order = "same-as-spl", &sdhci;
-+	};
-+};
 +&sdhci {
-+	status = "okay";
-+	max-frequency = <0xbebc200>;
-+	no-sdio;
-+	no-sd;
-+	supports-emmc;
-+	bus-width = <0x08>;
++	cap-mmc-highspeed;
++	mmc-ddr-1_8v;
 +	mmc-hs200-1_8v;
-+	non-removable;
-+	pinctrl-names = "default";
 +	pinctrl-0 = <&emmc_bus8 &emmc_clk &emmc_cmd &emmc_datastrobe>;
++};
++
++&vcc5v0_usb_host {
++	/delete-property/ regulator-always-on;
++	/delete-property/ regulator-boot-on;
 +};
 --- /dev/null
 +++ b/arch/arm/dts/rk3568-nsy-g68-plus.dts
-@@ -0,0 +1,631 @@
+@@ -0,0 +1,637 @@
 +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 +/*
 + * Copyright (c) 2020 Rockchip Electronics Co., Ltd.
@@ -458,6 +454,12 @@
 +			rockchip,pins = <0 RK_PA5 RK_FUNC_GPIO &pcfg_pull_none>;
 +		};
 +	};
++
++	rtl83xx_switches {
++		rtl8367s_switch0_int: switch0-int {
++			rockchip,pins = <1 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
 +};
 +
 +&rkisp {
@@ -656,13 +658,13 @@
 +};
 --- /dev/null
 +++ b/configs/nsy-g68-plus-rk3568_defconfig
-@@ -0,0 +1,78 @@
+@@ -0,0 +1,77 @@
 +CONFIG_ARM=y
 +CONFIG_SKIP_LOWLEVEL_INIT=y
 +CONFIG_SYS_HAS_NONCACHED_MEMORY=y
 +CONFIG_COUNTER_FREQUENCY=24000000
 +CONFIG_ARCH_ROCKCHIP=y
-+CONFIG_DEFAULT_DEVICE_TREE="rockchip/rk3568-nsy-g68-plus"
++CONFIG_DEFAULT_DEVICE_TREE="rk3568-nsy-g68-plus"
 +CONFIG_ROCKCHIP_RK3568=y
 +CONFIG_SPL_SERIAL=y
 +CONFIG_DEBUG_UART_BASE=0xFE660000
@@ -727,7 +729,6 @@
 +CONFIG_SYSRESET=y
 +CONFIG_USB=y
 +CONFIG_USB_XHCI_HCD=y
-+CONFIG_USB_XHCI_DWC3=y
 +CONFIG_USB_EHCI_HCD=y
 +CONFIG_USB_EHCI_GENERIC=y
 +CONFIG_USB_OHCI_HCD=y
