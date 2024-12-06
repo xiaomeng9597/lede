@@ -243,6 +243,14 @@ define U-Boot/fastrhino-r68s-rk3568
      fastrhino_r68s
 endef
 
+define U-Boot/easepi-rk3568
+  $(U-Boot/rk3568/Default)
+  NAME:=EASEPI RK3568
+  BUILD_DEVICES:= \
+    nsy_g68-plus \
+    nsy_g16-plus
+endef
+
 define U-Boot/generic-rk3568
   $(U-Boot/rk3568/Default)
   NAME:=GENERIC RK3568
@@ -425,7 +433,8 @@ UBOOT_TARGETS := \
   nanopi-r2s-rk3328 \
   nanopi-r2s-plus-rk3328 \
   orangepi-r1-plus-rk3328 \
-  orangepi-r1-plus-lts-rk3328
+  orangepi-r1-plus-lts-rk3328 \
+  easepi-rk3568 
 
 UBOOT_CONFIGURE_VARS += USE_PRIVATE_LIBGCC=yes
 
