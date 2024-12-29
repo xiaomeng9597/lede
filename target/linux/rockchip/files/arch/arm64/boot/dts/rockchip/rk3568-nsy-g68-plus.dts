@@ -25,7 +25,7 @@
 	};
 
 	chosen: chosen {
-		bootargs = "earlycon=uart8250,mmio32,0xfe660000 console=ttyFIQ0 rootwait";
+		stdout-path = "serial2:1500000n8";
 	};
 
 	fiq-debugger {
@@ -255,12 +255,6 @@
 		regulator-ramp-delay = <8000>;
 		regulator-always-on;
 		regulator-boot-on;
-	};
-
-	xpcs: syscon@fda00000 {
-		compatible = "rockchip,rk3568-xpcs", "syscon";
-		reg = <0x0 0xfda00000 0x0 0x200000>;
-		status = "disabled";
 	};
 
 	gmac0_xpcsclk: xpcs-gmac0-clock {
@@ -801,16 +795,11 @@
 	status = "okay";
 };
 
-&xpcs {
-	status = "okay";
-};
-
 // form lintel,使能,sgmii 千兆.
 &gmac1 {
 	status = "disabled";
 	phy-mode = "sgmii";
 	rockchip,pipegrf = <&pipegrf>;
-	rockchip,xpcs = <&xpcs>;
 	//不用reset
 	//snps,reset-gpio = <&gpio2 RK_PC2 GPIO_ACTIVE_LOW>;
 	//snps,reset-active-low;
